@@ -1,0 +1,37 @@
+{% extends "wagtailadmin/base.html" %}
+{% load i18n %}
+
+{% block titletag %}{% blocktrans %}Editing {{ category_type_name}} - {{ instance }}{% endblocktrans %}{% endblock %}
+{% block bodyclass %}menu-categories{% endblock %}
+
+{% block content %}
+    {% trans "Editing" as editing_str %}
+    {% include "wagtailadmin/shared/header.html" with title=editing_str subtitle=instance icon="doc-empty" usage_object=instance %}
+
+    <form action="{% url 'wagtailcategories_edit' content_type.app_label content_type.model instance.id %}" method="POST">
+        {% csrf_token %}
+        {{ edit_handler.render_form_content }}
+        
+        <footer>
+            <ul>
+                <li class="actions">
+                    <div class="dropdown dropup match-width">
+                        <input type="submit" value="{% trans 'Save' %}" class="button" />
+                        <div class="dropdown-toggle icon icon-arrow-up"></div>
+                        <ul role="menu">
+                            <li><a href="{% url 'wagtailcategories_delete' content_type.app_label content_type.model instance.id %}" class="shortcut">{% trans "Delete" %}</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </footer>
+    </form>
+
+{% endblock %}
+
+{% block extra_css %}
+    {% include "wagtailadmin/pages/_editor_css.html" %}
+{% endblock %}
+{% block extra_js %}
+    {% include "wagtailadmin/pages/_editor_js.html" %}
+{% endblock %}
