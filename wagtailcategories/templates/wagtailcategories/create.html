@@ -1,12 +1,12 @@
 {% extends "wagtailadmin/base.html" %}
 {% load i18n %}
 
-{% block titletag %}{% blocktrans %}New  {{ categorytype_name }}{% endblocktrans %}{% endblock %}
+{% block titletag %}{% blocktrans %}New  {{ category_type_name }}{% endblocktrans %}{% endblock %}
 {% block bodyclass %}menu-categories{% endblock %}
 
 {% block content %}
     {% trans "New" as new_str %}
-    {% include "wagtailadmin/shared/header.html" with title=new_str subtitle=categorytype_name icon="doc-empty" %}
+    {% include "wagtailadmin/shared/header.html" with title=new_str subtitle=category_type_name icon="doc-empty" %}
 
     <form action="{% url 'wagtailcategories_create' content_type.app_label content_type.model %}" method="POST">
         {% csrf_token %}
