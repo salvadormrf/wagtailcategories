@@ -8,26 +8,16 @@ from wagtail.tests.utils import WagtailTestUtils
 from wagtailcategories.models import register_category, CATEGORY_MODELS
 from wagtailcategories.views import get_category_edit_handler
 
-
-
-
-
-
-
 from wagtailcategories.models import BaseCategory, register_category
 
 @register_category
 class TestCategory(BaseCategory):
-    
     some_field = models.CharField(max_length=100)
     
     class Meta:
         verbose_name='Test Category'
         verbose_name_plural='Test Categories'
         
-
-
-
 
 class TestCategoryIndexView(TestCase, WagtailTestUtils):
     def setUp(self):
